@@ -53,8 +53,10 @@ func writeTitle(pdf *gopdf.GoPdf, title, id, date string, performanceDate string
 	_ = pdf.Cell(nil, "  ·  ")
 	pdf.SetTextColor(100, 100, 100)
 	_ = pdf.Cell(nil, date)
-	pdf.SetX(rateColumnOffset - 15)
-	_ = pdf.Cell(nil, fmt.Sprintf("%s %s", localizationService.serviceDate(), performanceDate))
+	if performanceDate != "" {
+		pdf.SetX(rateColumnOffset - 15)
+		_ = pdf.Cell(nil, fmt.Sprintf("%s %s", localizationService.serviceDate(), performanceDate))
+	}
 	pdf.Br(48)
 }
 
